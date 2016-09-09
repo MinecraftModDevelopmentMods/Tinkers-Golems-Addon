@@ -1,0 +1,16 @@
+[
+{
+  "modid": "golems_tcon",
+  "name": "Tinkers' Golems Addon",
+  "description": "Use TCon blocks to build golems!",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["sky01"],
+  "credits": "Textures made with Gimp 2.8",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
