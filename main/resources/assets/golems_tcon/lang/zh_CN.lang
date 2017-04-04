@@ -1,0 +1,21 @@
+# golem names
+entity.golems_tcon.golem_ardite.name=阿迪特傀儡
+entity.golems_tcon.golem_brownstone.name=褐岩石砖傀儡
+entity.golems_tcon.golem_clear_glass.name=通透玻璃傀儡
+entity.golems_tcon.golem_cobalt.name=钴傀儡
+entity.golems_tcon.golem_congealslime.name=凝血史莱姆傀儡
+entity.golems_tcon.golem_firewood.name=烈焰木傀儡
+entity.golems_tcon.golem_knightslime.name=骑士史莱姆傀儡
+entity.golems_tcon.golem_manyullyn.name=玛玉灵傀儡
+entity.golems_tcon.golem_pigiron.name=生铁傀儡
+entity.golems_tcon.golem_seared.name=焦黑石砖傀儡
+entity.golems_tcon.golem_silky.name=精致珠宝傀儡
+
+# tooltips
+tooltip.tconstruct=匠魂
+tooltip.congealed_slime=凝血史莱姆
+
+# entitytips for WAILA
+entitytip.is_fireproof=耐火
+entitytip.lights_mobs=燃烧伤害
+entitytip.has_knockback=大量击退攻击
