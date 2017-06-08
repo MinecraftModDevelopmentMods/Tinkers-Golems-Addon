@@ -16,7 +16,7 @@ public class TconGolems
 {
 	public static final String MODID = "golems_tcon";
 	public static final String NAME = "Tinkers' Construct Golems";
-	public static final String VERSION = "6.02.1";
+	public static final String VERSION = "6.02.2";
 	public static final String DEPS = "required-after:golems@[6.02,);required-after:tconstruct";
 	
 	@SidedProxy(clientSide = "com." + MODID + ".proxy.ClientProxy", serverSide = "com." + MODID + ".proxy.CommonProxy")
