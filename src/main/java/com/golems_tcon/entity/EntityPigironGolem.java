@@ -48,17 +48,17 @@ public class EntityPigironGolem extends GolemBase
 		{
 			// occasionally drop bacon when attacking
 			final int CHANCE = TGConfig.PIGIRON.getInt(BACON_CHANCE);
-			if(this.worldObj.rand.nextInt(100) < CHANCE)
+			if(this.world.rand.nextInt(100) < CHANCE)
 			{
 				ItemStack stack = TinkerCommons.bacon.copy();
-				EntityItem entityitem = new EntityItem(entity.worldObj, entity.posX, entity.posY, entity.posZ, stack);
+				EntityItem entityitem = new EntityItem(entity.world, entity.posX, entity.posY, entity.posZ, stack);
 				float f3 = 0.4F;
-				entityitem.motionX = (double)((float)this.worldObj.rand.nextGaussian() * f3);
-				entityitem.motionY = (double)((float)this.worldObj.rand.nextGaussian() * f3 + 0.2F);
-				entityitem.motionZ = (double)((float)this.worldObj.rand.nextGaussian() * f3);
-				if(!this.worldObj.isRemote)
+				entityitem.motionX = (double)((float)this.world.rand.nextGaussian() * f3);
+				entityitem.motionY = (double)((float)this.world.rand.nextGaussian() * f3 + 0.2F);
+				entityitem.motionZ = (double)((float)this.world.rand.nextGaussian() * f3);
+				if(!this.world.isRemote)
 				{
-					this.worldObj.spawnEntityInWorld(entityitem);
+					this.world.spawnEntity(entityitem);
 				}
 			}
 			return true;
