@@ -15,6 +15,7 @@ import com.golems_tcon.entity.EntitySilkyGolem;
 import com.golems_tcon.event.handler.TconCommonEventHandler;
 import com.golems_tcon.init.TconGolems;
 
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
@@ -47,6 +48,6 @@ public class CommonProxy
 	
 	private void register(Class<? extends GolemBase> c, String name)
 	{
-		EntityRegistry.registerModEntity(c, name, ++golemCount, TconGolems.instance, 64, 3, true);
+		EntityRegistry.registerModEntity(new ResourceLocation(name), c, name, ++golemCount, TconGolems.instance, 64, 3, true);
 	}
 }

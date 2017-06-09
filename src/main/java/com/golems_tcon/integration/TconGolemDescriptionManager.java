@@ -21,7 +21,7 @@ public class TconGolemDescriptionManager extends GolemDescriptionManager
 	
 	public List<String> getEntityDescription(GolemBase golem)
 	{
-		List<String> list = new LinkedList();
+		List<String> list = new LinkedList<String>();
 		if(this.showSpecial)
 		{
 			if(golem.getClass() == EntityFirewoodGolem.class)

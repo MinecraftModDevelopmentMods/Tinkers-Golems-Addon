@@ -27,7 +27,7 @@ public class EntityCobaltGolem extends GolemBase
 	public void addGolemDrops(List<WeightedItem> dropList, boolean recentlyHit, int lootingLevel) 
 	{
 		ItemStack stack = TinkerCommons.ingotCobalt.copy();
-		stack.stackSize = Math.min(6 + this.rand.nextInt(8 + lootingLevel * 4), 36);
+		stack.setCount(Math.min(6 + this.rand.nextInt(8 + lootingLevel * 4), 36));
 		this.addDrop(dropList, stack, 100);
 	}
 
@@ -41,7 +41,7 @@ public class EntityCobaltGolem extends GolemBase
 	@Override
 	protected ResourceLocation applyTexture() 
 	{
-		return this.makeGolemTexture(TconGolems.MODID, "cobalt");
+		return GolemBase.makeGolemTexture(TconGolems.MODID, "cobalt");
 	}
 
 	@Override

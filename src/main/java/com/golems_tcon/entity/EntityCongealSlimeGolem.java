@@ -36,7 +36,7 @@ public class EntityCongealSlimeGolem extends GolemMultiTextured
 	public void addGolemDrops(List<WeightedItem> dropList, boolean recentlyHit, int lootingLevel) 
 	{
 		ItemStack stack = EnumSlimeType.get(this.getTextureNum()).getDropStack();
-		stack.stackSize = Math.min(3 + this.rand.nextInt(6 + lootingLevel), 12);
+		stack.setCount(Math.min(3 + this.rand.nextInt(6 + lootingLevel), 12));
 		this.addDrop(dropList, stack, 100);
 	}
 

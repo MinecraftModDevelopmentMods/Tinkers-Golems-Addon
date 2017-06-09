@@ -42,7 +42,7 @@ public class EntityBrownstoneGolem extends GolemBase
 	@Override
 	protected ResourceLocation applyTexture() 
 	{
-		return this.makeGolemTexture(TconGolems.MODID, "brownstone");
+		return GolemBase.makeGolemTexture(TconGolems.MODID, "brownstone");
 	}
 
 	@Override

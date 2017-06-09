@@ -26,7 +26,7 @@ public class EntityCGlassGolem extends GolemBase
 	public void addGolemDrops(List<WeightedItem> dropList, boolean recentlyHit, int lootingLevel) 
 	{
 		ItemStack stack = new ItemStack(TinkerCommons.blockClearGlass);
-		stack.stackSize = Math.min(6 + this.rand.nextInt(8 + lootingLevel * 4), 36);
+		stack.setCount(Math.min(6 + this.rand.nextInt(8 + lootingLevel * 4), 36));
 		this.addDrop(dropList, stack, 100);
 	}
 
@@ -40,7 +40,7 @@ public class EntityCGlassGolem extends GolemBase
 	@Override
 	protected ResourceLocation applyTexture() 
 	{
-		return this.makeGolemTexture(TconGolems.MODID, "clear_glass");
+		return GolemBase.makeGolemTexture(TconGolems.MODID, "clear_glass");
 	}
 
 	@Override
