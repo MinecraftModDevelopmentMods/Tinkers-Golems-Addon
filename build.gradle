@@ -48,7 +48,7 @@ repositories {
 dependencies {
 //    compile "com.golems:ExtraGolems:1.10.2-6.02:deobf"
 	provided 'mcp.mobius.waila:Waila:1.7.0-B3_1.9.4:dev'
-	provided 'mcjty.theoneprobe:TheOneProbe:1.10-1.1.0-30'
+	provided 'mcjty.theoneprobe:TheOneProbe:1.1x-1.4.0-50'
     provided 'slimeknights:TConstruct:1.11.2-2.7.0.+'
     provided 'slimeknights.mantle:Mantle:1.11.2-1.2.0.+'
 }
