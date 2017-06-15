@@ -79,9 +79,9 @@ public class EntityCongealSlimeGolem extends GolemMultiTextured
 		if (!this.isEntityInvulnerable(source))
 		{
 			super.damageEntity(source, amount);
-			if(source.getSourceOfDamage() != null && TGConfig.CONGEAL_SLIME.getBoolean(ALLOW_SPECIAL))
+			if(source.getTrueSource() != null && TGConfig.CONGEAL_SLIME.getBoolean(ALLOW_SPECIAL))
 			{
-				knockbackTarget(source.getSourceOfDamage(), TGConfig.CONGEAL_SLIME.getFloat(KNOCKBACK_FACTOR) * 0.625F);
+				knockbackTarget(source.getTrueSource(), TGConfig.CONGEAL_SLIME.getFloat(KNOCKBACK_FACTOR) * 0.625F);
 			}
 		}
 	}
