@@ -27,13 +27,13 @@ plugins {
 */
 version = "6.02.2"
 group= "com.golems" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "TinkersGolemsAddon[1.10.2]"
+archivesBaseName = "TinkersGolemsAddon[1.11.2]"
 
 minecraft {
     version = "1.11.2-13.20.0.2315"
     runDir = "run"
 
-    mappings = "snapshot_20170531"
+    mappings = "stable_32"
     makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
 
@@ -43,14 +43,15 @@ repositories {
     maven { url = "http://maven.tterrag.com" }
 	maven { url = "http://mobiusstrip.eu/maven" }
 	maven { url = "http://dvs1.progwml6.com/files/maven" }
+	maven { url = "http://chickenbones.net/maven/" }
 }
 
 dependencies {
-//    compile "com.golems:ExtraGolems:1.10.2-6.02:deobf"
-	provided 'mcp.mobius.waila:Waila:1.7.0-B3_1.9.4:dev'
+    compile "com.golems:ExtraGolems:1.10.2-6.02:deobf"
+	provided 'mcp.mobius.waila:Waila:1.7.1_1.11.2:dev'
 	provided 'mcjty.theoneprobe:TheOneProbe:1.1x-1.4.0-50'
-    provided 'slimeknights:TConstruct:1.11.2-2.7.0.+'
     provided 'slimeknights.mantle:Mantle:1.11.2-1.2.0.+'
+    provided 'slimeknights:TConstruct:1.11.2-2.7.0.+'
 }
 
 processResources
