@@ -30,7 +30,7 @@ group= "com.golems" // http://maven.apache.org/guides/mini/guide-naming-conventi
 archivesBaseName = "TinkersGolemsAddon[1.11.2]"
 
 minecraft {
-    version = "1.11.2-13.20.0.2315"
+    version = "1.11.2-13.20.1.2386"
     runDir = "run"
 
     mappings = "stable_32"
