@@ -8,23 +8,15 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import slimeknights.tconstruct.shared.TinkerCommons;
 
 public class EntityBrownstoneGolem extends GolemBase {
 	
 	public EntityBrownstoneGolem(World world) {
 		super(world);
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.29D);
+		this.setLootTableLoc(TconGolems.MODID, "golem_brownstone");
 	}
-
-//	@Override
-//	public void addGolemDrops(List<WeightedItem> dropList, boolean recentlyHit, int lootingLevel) 
-//	{
-//		Block brownstone = TconCommonEventHandler.getTconBlock("brownstone");
-//		if(brownstone != null)
-//		{
-//			this.addDrop(dropList, brownstone, 0, 6, Math.min(rand.nextInt(8 + lootingLevel * 4), 30), 100);
-//		}
-//	}
 
 	@Override
 	protected ResourceLocation applyTexture() {

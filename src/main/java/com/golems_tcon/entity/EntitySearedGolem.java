@@ -15,14 +15,8 @@ public class EntitySearedGolem extends GolemBase {
 		super(world);
 		this.isImmuneToFire = true;
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.22D);
+		this.setLootTableLoc(TconGolems.MODID, "golem_seared");
 	}
-
-//	@Override
-//	public void addGolemDrops(List<WeightedItem> dropList, boolean recentlyHit, int lootingLevel) {
-//		ItemStack stack = TinkerCommons.searedBrick.copy();
-//		stack.setCount(Math.min(6 + this.rand.nextInt(8 + lootingLevel * 4), 36));
-//		this.addDrop(dropList, stack, 100);
-//	}
 
 	@Override
 	protected ResourceLocation applyTexture() {

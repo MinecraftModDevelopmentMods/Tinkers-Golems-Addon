@@ -13,6 +13,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import slimeknights.tconstruct.shared.TinkerCommons;
 
 public class EntityFirewoodGolem extends GolemBase {
 	
@@ -22,30 +23,21 @@ public class EntityFirewoodGolem extends GolemBase {
 		super(world);
 		this.isImmuneToFire = true;
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.255D);
+		this.setLootTableLoc(TconGolems.MODID, "golem_firewood");
+		this.setCreativeReturn(TinkerCommons.firewood);
 	}
 	
 	/** Attack by lighting on fire as well */
 	@Override
 	public boolean attackEntityAsMob(Entity entity) {
 		if(super.attackEntityAsMob(entity)) {
-			if(TGConfig.FIREWOOD.getBoolean(ALLOW_SPECIAL)) {
+			if(getConfig(this).getBoolean(ALLOW_SPECIAL)) {
 				entity.setFire(2 + rand.nextInt(5));
 			}
 			return true;
 		}
 		return false;
 	}
-
-//	@Override
-//	public void addGolemDrops(List<WeightedItem> dropList, boolean recentlyHit, int lootingLevel) 
-//	{
-//		ItemStack planks = TinkerCommons.lavawood.copy();
-//		ItemStack logs = TinkerCommons.firewood.copy();
-//		planks.setCount(1 + rand.nextInt(3));
-//		this.addDrop(dropList, logs, 50 + lootingLevel * 8);
-//		this.addDrop(dropList, planks, 90 + lootingLevel * 5);
-//	}
-
 
 	@Override
 	protected ResourceLocation applyTexture() {
@@ -59,7 +51,7 @@ public class EntityFirewoodGolem extends GolemBase {
 	
 	@Override
 	public List<String> addSpecialDesc(final List<String> list) {
-		if(true) { // TODO 
+		if(getConfig(this).getBoolean(ALLOW_SPECIAL)) {
 			String sBurn = TextFormatting.RED + trans("entitytip.lights_mobs");
 			list.add(sBurn);
 		}

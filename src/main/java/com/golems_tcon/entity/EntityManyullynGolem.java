@@ -8,6 +8,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import slimeknights.tconstruct.shared.TinkerCommons;
 
 public class EntityManyullynGolem extends GolemBase {
 	
@@ -15,15 +16,9 @@ public class EntityManyullynGolem extends GolemBase {
 		super(world);
 		this.isImmuneToFire = true;
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.23D);
+		this.setLootTableLoc(TconGolems.MODID, "golem_manyullyn");
+		this.setCreativeReturn(TinkerCommons.blockManyullyn);
 	}
-
-//	@Override
-//	public void addGolemDrops(List<WeightedItem> dropList, boolean recentlyHit, int lootingLevel) 
-//	{
-//		ItemStack stack = TinkerCommons.blockManyullyn.copy();
-//		stack.setCount(Math.min(6 + this.rand.nextInt(8 + lootingLevel * 4), 36));
-//		this.addDrop(dropList, stack, 100);
-//	}
 
 	@Override
 	protected ResourceLocation applyTexture() {

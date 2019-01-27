@@ -1,128 +1,61 @@
 package com.golems_tcon.event.handler;
 
-import javax.annotation.Nullable;
+import com.golems.main.GolemItems;
 
-import com.golems.entity.EntityStainedGlassGolem;
-import com.golems.entity.GolemColorizedMultiTextured;
-import com.golems.events.GolemBuildEvent;
-import com.golems.main.Config;
-import com.golems_tcon.entity.EntityArditeGolem;
-import com.golems_tcon.entity.EntityBrownstoneGolem;
-import com.golems_tcon.entity.EntityCGlassGolem;
-import com.golems_tcon.entity.EntityCobaltGolem;
-import com.golems_tcon.entity.EntityCongealSlimeGolem;
-import com.golems_tcon.entity.EntityFirewoodGolem;
-import com.golems_tcon.entity.EntityKnightSlimeGolem;
-import com.golems_tcon.entity.EntityManyullynGolem;
-import com.golems_tcon.entity.EntityPigironGolem;
-import com.golems_tcon.entity.EntitySearedGolem;
-import com.golems_tcon.entity.EntitySilkyGolem;
-import com.golems_tcon.init.TGConfig;
-
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import slimeknights.tconstruct.shared.TinkerCommons;
+import slimeknights.tconstruct.shared.block.BlockFirewood;
 
-public class TconCommonEventHandler 
-{
-	/*
+public class TconCommonEventHandler {
+	
 	@SubscribeEvent
-	public void onGolemBuild(GolemBuildEvent event)
-	{
-		if(event.isGolemNull())
-		{		
-			ItemStack golemStack = new ItemStack(event.blockBelow, 1, event.blockBelow.getMetaFromState(event.blockState));
-			if(event.areBlocksSameMeta)
-			{
-				if(ItemStack.areItemsEqual(golemStack, TinkerCommons.blockCobalt))
-				{
-					event.setGolem(new EntityCobaltGolem(event.worldObj), TGConfig.COBALT.canSpawn());
-				}
-				else if(ItemStack.areItemsEqual(golemStack, TinkerCommons.blockArdite))
-				{
-					event.setGolem(new EntityArditeGolem(event.worldObj), TGConfig.ARDITE.canSpawn());
-				}
-				else if(ItemStack.areItemsEqual(golemStack, TinkerCommons.blockManyullyn))
-				{
-					event.setGolem(new EntityManyullynGolem(event.worldObj), TGConfig.MANYULLYN.canSpawn());
-				}
-				else if(ItemStack.areItemsEqual(golemStack, TinkerCommons.blockKnightSlime))
-				{
-					event.setGolem(new EntityKnightSlimeGolem(event.worldObj), TGConfig.KNIGHTSLIME.canSpawn());
-				}
-				else if(ItemStack.areItemsEqual(golemStack, TinkerCommons.blockPigIron))
-				{
-					event.setGolem(new EntityPigironGolem(event.worldObj), TGConfig.PIGIRON.canSpawn());
-				}
-				else if(ItemStack.areItemsEqual(golemStack, TinkerCommons.blockSilkyJewel))
-				{
-					event.setGolem(new EntitySilkyGolem(event.worldObj), TGConfig.SILKY.canSpawn());
-				}
-				else if(ItemStack.areItemsEqual(golemStack, TinkerCommons.firewood))
-				{
-					event.setGolem(new EntityFirewoodGolem(event.worldObj), TGConfig.FIREWOOD.canSpawn());
-				}
-				else if(event.blockBelow == TinkerCommons.blockClearGlass)
-				{
-					event.setGolem(new EntityCGlassGolem(event.worldObj), TGConfig.CGLASS.canSpawn());
-				}
-			}
-			
-			Block brownstone = getTconBlock("brownstone");
-			Block seared = getTconBlock("seared");
-			Block slimeCongealed = getTconBlock("slime_congealed");
-			
-			if(brownstone != null && event.blockBelow == brownstone)
-			{
-				event.setGolem(new EntityBrownstoneGolem(event.worldObj), TGConfig.BROWNSTONE.canSpawn());
-			}
-			else if(seared != null && event.blockBelow == seared)
-			{
-				event.setGolem(new EntitySearedGolem(event.worldObj), TGConfig.SEARED.canSpawn());
-			}
-			else if(slimeCongealed != null && event.blockBelow == slimeCongealed)
-			{
-				event.setGolem(new EntityCongealSlimeGolem(event.worldObj), TGConfig.CONGEAL_SLIME.canSpawn());
-			}
-			else if(event.blockBelow == TinkerCommons.blockClearStainedGlass)
-			{
-				GolemColorizedMultiTextured golem = new EntityStainedGlassGolem(event.worldObj);
-				// use block metadata to give this golem the right texture
-				int meta = golemStack.getMetadata() % golem.getColorArray().length;
-				golem.setTextureNum((byte)(golem.getColorArray().length - meta - 1));
-				// actually set the golem
-				event.setGolem(golem, Config.STAINED_GLASS.canSpawn());
-			}
-		}
-	}
-	
-	@Nullable
-	public static Block getTconBlock(String name)
-	{
-		Block found = Block.REGISTRY.getObject(new ResourceLocation("tconstruct", name));
-		return found.equals(Blocks.AIR) ? null : found;
-	}
-	
-	
-	public static boolean matchesOreDict(Block b, String name, int meta)
-	{
-		if(OreDictionary.doesOreNameExist(name))
-		{
-			List<ItemStack> ores = OreDictionary.getOres(name);
-			ItemStack blockStack = new ItemStack(b, 1, meta);
-			for(ItemStack stack : ores)
-			{
-				if(OreDictionary.itemMatches(blockStack, stack, meta != OreDictionary.WILDCARD_VALUE))
-				{
-					//System.out.println("found ore dict match for " + name + " with meta " + meta);
-					return true;
+	public static void onBlockPlaced(BlockEvent.PlaceEvent event) {
+		// this is required to intercept some behavior
+		// with Tinkers Construct, which insists on using
+		// BlockState Properties to differentiate VERY different blocks.
+		// Basically, we need to make sure the golem's building
+		// blocks are all the same metadata before allowing a golem
+		// to be built and therefore use up the blocks
+		
+		if(event.getPlacedBlock().getBlock() == GolemItems.golemHead) {
+			// make sure all blocks have same value
+			final IBlockState stateBelow1 = event.getWorld().getBlockState(event.getPos().down(1));
+			final IBlockState stateBelow2 = event.getWorld().getBlockState(event.getPos().down(2));
+			// do this check for TCon's metal block and firewood/lavawood block
+			if(stateBelow1.getBlock() == TinkerCommons.blockMetal || stateBelow1.getBlock() == TinkerCommons.blockFirewood) {
+				// make sure the states are equal
+				if(stateBelow1.equals(stateBelow2)) {
+					final boolean flagX = isGolemAligned(event.getWorld(), event.getPos(), EnumFacing.EAST);
+					final boolean flagZ = isGolemAligned(event.getWorld(), event.getPos(), EnumFacing.SOUTH);
+					System.out.println("flagX = " + flagX + ", flagZ = " + flagZ);
+					if(!(flagX || flagZ)) {
+						// the blockstates were not equal
+						// cancel the attempt
+						event.setCanceled(true);
+						return;
+					}
+					// only allow golem made from Firewood variant
+					if(stateBelow1.getBlock() == TinkerCommons.blockFirewood 
+							&& stateBelow1.getValue(BlockFirewood.TYPE) != BlockFirewood.FirewoodType.FIREWOOD) {
+						event.setCanceled(true);
+						return;
+					}
 				}
 			}
 		}
-		return false;
+		
 	}
-	*/
+	
+	private static boolean isGolemAligned(final World world, final BlockPos headPos, EnumFacing dir) {
+		final BlockPos pos1 = headPos.down(1).offset(dir, 1);
+		final BlockPos pos2 = headPos.down(1).offset(dir.getOpposite(), 1);
+		final IBlockState below = world.getBlockState(headPos.down(1));
+		return world.getBlockState(pos1).equals(below)
+			&& world.getBlockState(pos2).equals(below);
+	}
 }

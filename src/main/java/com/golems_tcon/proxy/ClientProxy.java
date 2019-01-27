@@ -10,7 +10,7 @@ public class ClientProxy extends CommonProxy {
 		com.golems.proxies.ClientProxy.registerTextured(EntityBrownstoneGolem.class);
 		com.golems.proxies.ClientProxy.registerTextured(EntityCGlassGolem.class);
 		com.golems.proxies.ClientProxy.registerTextured(EntityCobaltGolem.class);
-		com.golems.proxies.ClientProxy.registerTextured(EntityCongealSlimeGolem.class);
+		com.golems.proxies.ClientProxy.registerTextured(EntityCongealedSlimeGolem.class);
 		com.golems.proxies.ClientProxy.registerTextured(EntityFirewoodGolem.class);
 		com.golems.proxies.ClientProxy.registerTextured(EntityKnightSlimeGolem.class);
 		com.golems.proxies.ClientProxy.registerTextured(EntityManyullynGolem.class);

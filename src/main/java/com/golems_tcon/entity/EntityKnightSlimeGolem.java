@@ -8,21 +8,16 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import slimeknights.tconstruct.shared.TinkerCommons;
 
 public class EntityKnightSlimeGolem extends GolemBase {
 	
 	public EntityKnightSlimeGolem(World world) {
 		super(world);
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.238D);
+		this.setLootTableLoc(TconGolems.MODID, "golem_knightslime");
+		this.setCreativeReturn(TinkerCommons.blockKnightSlime);
 	}
-
-//	@Override
-//	public void addGolemDrops(List<WeightedItem> dropList, boolean recentlyHit, int lootingLevel) 
-//	{
-//		ItemStack stack = TinkerCommons.ingotKnightSlime.copy();
-//		stack.setCount(Math.min(6 + this.rand.nextInt(8 + lootingLevel * 4), 36));
-//		this.addDrop(dropList, stack, 100);
-//	}
 
 	@Override
 	protected ResourceLocation applyTexture() {

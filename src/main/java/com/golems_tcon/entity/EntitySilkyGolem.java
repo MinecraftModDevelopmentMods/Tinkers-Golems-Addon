@@ -14,15 +14,8 @@ public class EntitySilkyGolem extends GolemBase {
 	public EntitySilkyGolem(World world) {
 		super(world);
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.32D);
+		this.setLootTableLoc(TconGolems.MODID, "golem_silky");
 	}
-
-//	@Override
-//	public void addGolemDrops(List<WeightedItem> dropList, boolean recentlyHit, int lootingLevel) 
-//	{
-//		ItemStack stack = TinkerCommons.matSilkyJewel.copy();
-//		stack.setCount(Math.min(6 + this.rand.nextInt(8 + lootingLevel * 4), 36));
-//		this.addDrop(dropList, stack, 100);
-//	}
 
 	@Override
 	protected ResourceLocation applyTexture() {

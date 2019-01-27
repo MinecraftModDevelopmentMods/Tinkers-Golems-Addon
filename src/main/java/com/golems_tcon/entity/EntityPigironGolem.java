@@ -27,16 +27,10 @@ public class EntityPigironGolem extends GolemBase {
 	public EntityPigironGolem(World world) {
 		super(world);
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.32D);
-		this.CHANCE = TGConfig.PIGIRON.getInt(BACON_CHANCE);
+		this.setLootTableLoc(TconGolems.MODID, "golem_pigiron");
+		this.setCreativeReturn(TinkerCommons.blockPigIron);
+		this.CHANCE = getConfig(this).getInt(BACON_CHANCE);
 	}
-
-//	@Override
-//	public void addGolemDrops(List<WeightedItem> dropList, boolean recentlyHit, int lootingLevel) 
-//	{
-//		ItemStack stack = TinkerCommons.ingotPigIron.copy();
-//		stack.setCount(Math.min(6 + this.rand.nextInt(8 + lootingLevel * 4), 36));
-//		this.addDrop(dropList, stack, 100);
-//	}
 
 	@Override
 	public boolean attackEntityAsMob(Entity entity) {

@@ -9,7 +9,7 @@ import com.golems_tcon.entity.EntityArditeGolem;
 import com.golems_tcon.entity.EntityBrownstoneGolem;
 import com.golems_tcon.entity.EntityCGlassGolem;
 import com.golems_tcon.entity.EntityCobaltGolem;
-import com.golems_tcon.entity.EntityCongealSlimeGolem;
+import com.golems_tcon.entity.EntityCongealedSlimeGolem;
 import com.golems_tcon.entity.EntityFirewoodGolem;
 import com.golems_tcon.entity.EntityKnightSlimeGolem;
 import com.golems_tcon.entity.EntityManyullynGolem;
@@ -35,21 +35,19 @@ public class CommonProxy  {
 	public void registerEntities() {
 		golemCount = 0;
 		
-		register(EntityArditeGolem.class, "golem_ardite", TinkerCommons.blockOre);
+		register(EntityArditeGolem.class, "golem_ardite", null);
 		register(EntityBrownstoneGolem.class, "golem_brownstone", getTconBlock("brownstone"));
 		register(EntityCGlassGolem.class, "golem_clear_glass", TinkerCommons.blockClearGlass);
-		register(EntityCobaltGolem.class, "golem_cobalt", null);
-		register(EntityCongealSlimeGolem.class, "golem_congealslime", null);
-		register(EntityFirewoodGolem.class, "golem_firewood", null);
+		register(EntityCobaltGolem.class, "golem_cobalt", TinkerCommons.blockMetal);
+		register(EntityCongealedSlimeGolem.class, "golem_congealedslime", TinkerCommons.blockSlimeCongealed);
+		register(EntityFirewoodGolem.class, "golem_firewood", TinkerCommons.blockFirewood);
 		register(EntityKnightSlimeGolem.class, "golem_knightslime", null);
 		register(EntityManyullynGolem.class, "golem_manyullyn", null);
 		register(EntityPigironGolem.class, "golem_pigiron", null);
-		register(EntitySearedGolem.class, "golem_seared", null);
+		register(EntitySearedGolem.class, "golem_seared", getTconBlock("seared"));
 		register(EntitySilkyGolem.class, "golem_silky", null);
 		
-		// TODO add clear colored glass as alias for colored glass golem
-		GolemLookup.addBlockAlias(TinkerCommons.blockClearStainedGlass, EntityStainedGlassGolem.class);
-		
+		GolemLookup.addBlockAlias(TinkerCommons.blockClearStainedGlass, EntityStainedGlassGolem.class);		
 	}
 	
 	/** registers the entity with an optional loot table. **/

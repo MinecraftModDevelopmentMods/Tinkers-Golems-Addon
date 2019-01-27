@@ -4,39 +4,52 @@ import java.util.List;
 
 import com.golems.entity.GolemBase;
 import com.golems.entity.GolemMultiTextured;
-import com.golems_tcon.init.TGConfig;
 import com.golems_tcon.init.TconGolems;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import slimeknights.tconstruct.shared.TinkerCommons;
 
-public class EntityCongealSlimeGolem extends GolemMultiTextured
+public class EntityCongealedSlimeGolem extends GolemMultiTextured
 {
 	public static final String ALLOW_SPECIAL = "Allow Special: Knockback";
 	public static final String KNOCKBACK_FACTOR = "Knockback Factor";
-	public static final String sPrefix = "slime";
+	public static final String sPrefix = "congealedslime";
 	
-	public EntityCongealSlimeGolem(World world) {
+	public EntityCongealedSlimeGolem(World world) {
 		super(world, sPrefix, EnumSlimeType.allNames);
 		this.setCanSwim(true);
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.245D);
+		// after some deliberation, I decided not to change the
+		// golem's loot table based on texture. The slime blocks
+		// are obtained in different ways, so the change here is 
+		// purely cosmetic -- it will always drop green slime balls
+		this.setLootTableLoc(TconGolems.MODID, "golem_" + sPrefix);
 	}
 
-//	@Override
-//	public void addGolemDrops(List<WeightedItem> dropList, boolean recentlyHit, int lootingLevel) 
-//	{
-//		ItemStack stack = EnumSlimeType.get(this.getTextureNum()).getDropStack();
-//		stack.setCount(Math.min(3 + this.rand.nextInt(6 + lootingLevel), 12));
-//		this.addDrop(dropList, stack, 100);
-//	}
+	@Override
+    protected ResourceLocation getLootTable() {
+		return this.lootTableLoc;
+    }
+	
+	/** 
+	 * Called after golem has been spawned. Parameters are the exact IBlockStates used to
+	 * make this golem (especially used with multi-textured golems)
+	 **/
+	@Override
+	public void onBuilt(IBlockState body, IBlockState legs, IBlockState arm1, IBlockState arm2) { 
+		byte meta = (byte)(body.getBlock().getMetaFromState(body) % this.getNumTextures());
+		this.setTextureNum(meta);
+	}
 
 	@Override
 	public SoundEvent getGolemSound() {
@@ -51,8 +64,8 @@ public class EntityCongealSlimeGolem extends GolemMultiTextured
 	@Override
 	public boolean attackEntityAsMob(Entity entity) {
 		if(super.attackEntityAsMob(entity)) {
-			if(TGConfig.CONGEAL_SLIME.getBoolean(ALLOW_SPECIAL)) {
-				knockbackTarget(entity, TGConfig.CONGEAL_SLIME.getFloat(KNOCKBACK_FACTOR));
+			if(getConfig(this).getBoolean(ALLOW_SPECIAL)) {
+				knockbackTarget(entity, getConfig(this).getFloat(KNOCKBACK_FACTOR));
 			}
 			return true;
 		}
@@ -63,8 +76,8 @@ public class EntityCongealSlimeGolem extends GolemMultiTextured
 	protected void damageEntity(DamageSource source, float amount) {
 		if (!this.isEntityInvulnerable(source)) {
 			super.damageEntity(source, amount);
-			if(source.getImmediateSource() != null && TGConfig.CONGEAL_SLIME.getBoolean(ALLOW_SPECIAL)) {
-				knockbackTarget(source.getImmediateSource(), TGConfig.CONGEAL_SLIME.getFloat(KNOCKBACK_FACTOR) * 0.625F);
+			if(source.getImmediateSource() != null && getConfig(this).getBoolean(ALLOW_SPECIAL)) {
+				knockbackTarget(source.getImmediateSource(), getConfig(this).getFloat(KNOCKBACK_FACTOR) * 0.625F);
 			}
 		}
 	}
@@ -82,7 +95,7 @@ public class EntityCongealSlimeGolem extends GolemMultiTextured
 	
 	@Override
 	public List<String> addSpecialDesc(final List<String> list) {
-		if(true) { // TODO
+		if(getConfig(this).getBoolean(ALLOW_SPECIAL)) {
 			TextFormatting format = this.getSlimeType().getColor();
 			String sKnockback = format + trans("entitytip.has_knockback");
 			list.add(sKnockback);
