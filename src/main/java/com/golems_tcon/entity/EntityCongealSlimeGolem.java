@@ -36,7 +36,7 @@ public class EntityCongealSlimeGolem extends GolemMultiTextured
 	public void addGolemDrops(List<WeightedItem> dropList, boolean recentlyHit, int lootingLevel) 
 	{
 		ItemStack stack = EnumSlimeType.get(this.getTextureNum()).getDropStack();
-		stack.stackSize = Math.min(3 + this.rand.nextInt(6 + lootingLevel), 12);
+		stack.setCount(Math.min(3 + this.rand.nextInt(6 + lootingLevel), 12));
 		this.addDrop(dropList, stack, 100);
 	}
 
@@ -79,9 +79,9 @@ public class EntityCongealSlimeGolem extends GolemMultiTextured
 		if (!this.isEntityInvulnerable(source))
 		{
 			super.damageEntity(source, amount);
-			if(source.getSourceOfDamage() != null && TGConfig.CONGEAL_SLIME.getBoolean(ALLOW_SPECIAL))
+			if(source.getTrueSource() != null && TGConfig.CONGEAL_SLIME.getBoolean(ALLOW_SPECIAL))
 			{
-				knockbackTarget(source.getSourceOfDamage(), TGConfig.CONGEAL_SLIME.getFloat(KNOCKBACK_FACTOR) * 0.625F);
+				knockbackTarget(source.getTrueSource(), TGConfig.CONGEAL_SLIME.getFloat(KNOCKBACK_FACTOR) * 0.625F);
 			}
 		}
 	}

@@ -46,7 +46,7 @@ public class EntityFirewoodGolem extends GolemBase
 	{
 		ItemStack planks = TinkerCommons.lavawood.copy();
 		ItemStack logs = TinkerCommons.firewood.copy();
-		planks.stackSize = 1 + rand.nextInt(3);
+		planks.setCount(1 + rand.nextInt(3));
 		this.addDrop(dropList, logs, 50 + lootingLevel * 8);
 		this.addDrop(dropList, planks, 90 + lootingLevel * 5);
 	}
@@ -61,7 +61,7 @@ public class EntityFirewoodGolem extends GolemBase
 	@Override
 	protected ResourceLocation applyTexture() 
 	{
-		return this.makeGolemTexture(TconGolems.MODID, "firewood");
+		return GolemBase.makeGolemTexture(TconGolems.MODID, "firewood");
 	}
 
 	@Override
