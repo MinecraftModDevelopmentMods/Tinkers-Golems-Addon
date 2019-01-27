@@ -1,4 +1,3 @@
-
 // For those who want the bleeding edge
 buildscript {
     repositories {
@@ -9,7 +8,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
@@ -19,42 +18,53 @@ javadoc {
     failOnError = false
 }
 
-/*
-// for people who want stable - not yet functional for MC 1.8.8 - we require the forgegradle 2.1 snapshot
-plugins {
-    id "net.minecraftforge.gradle.forge" version "2.0.2"
-}
-*/
-version = "6.02.2"
+
+
+version = "7.1.1-1"
 group= "com.golems" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "TinkersGolemsAddon[1.10.2]"
+archivesBaseName = "TinkersGolemsAddon[1.12]"
 
 minecraft {
-    version = "1.10.2-12.18.3.2185"
+    version = "1.12.2-14.23.4.2705"
     runDir = "run"
 
-    mappings = "stable_29"
+    mappings = "stable_39"
     makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
 
 repositories {
     mavenCentral()
     maven { url = "https://maven.mcmoddev.com/" }
-    maven { url = "http://maven.tterrag.com" }
-	maven { url = "http://mobiusstrip.eu/maven" }
+    maven { // TOP
+        name 'tterrag maven'
+        url "https://maven.tterrag.com/"
+    }
+    maven { // HWYLA
+        name 'tehnut'
+        url 'http://tehnut.info/maven/'
+    }
 	maven { url = "http://dvs1.progwml6.com/files/maven" }
+	maven { url = "http://chickenbones.net/maven/" }
+    maven { // CoFH
+        name 'Covers Maven'
+        url 'http://maven.covers1624.net/'
+    }
+
 }
 
 dependencies {
-    compile "com.golems:ExtraGolems:1.10.2-6.02:deobf"
-	provided 'mcp.mobius.waila:Waila:1.7.0-B3_1.9.4:dev'
-	provided 'mcjty.theoneprobe:TheOneProbe:1.10-1.1.0-30'
-    provided 'slimeknights:TConstruct:1.10.2-2.6.5.+'
-	provided 'slimeknights.mantle:Mantle:1.10.2-1.1.5.+'
+    deobfCompile ("com.mcmoddev:ExtraGolems:1.12-7.1.1+") {
+        exclude group: 'deobf.mezz.jei'
+    }
+    deobfCompile ("slimeknights:TConstruct:1.12.2-2.12.0.+") {
+        exclude group: 'deobf.mezz.jei'
+    }
+	deobfCompile "slimeknights.mantle:Mantle:1.12-1.3.3.+"
+
+
 }
 
-processResources
-{
+processResources {
     // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version

@@ -28,6 +28,7 @@ import slimeknights.tconstruct.shared.TinkerCommons;
 
 public class TconCommonEventHandler 
 {
+	/*
 	@SubscribeEvent
 	public void onGolemBuild(GolemBuildEvent event)
 	{
@@ -105,7 +106,7 @@ public class TconCommonEventHandler
 		return found.equals(Blocks.AIR) ? null : found;
 	}
 	
-	/*
+	
 	public static boolean matchesOreDict(Block b, String name, int meta)
 	{
 		if(OreDictionary.doesOreNameExist(name))
