@@ -20,12 +20,12 @@ javadoc {
 
 
 
-version = "7.1.1-1"
+version = "7.1.5-1"
 group= "com.golems" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "TinkersGolemsAddon[1.12]"
+archivesBaseName = "TinkersGolemsAddon-1.12"
 
 minecraft {
-    version = "1.12.2-14.23.4.2705"
+    version = "1.12.2-14.23.5.2768"
     runDir = "run"
 
     mappings = "stable_39"
@@ -53,13 +53,15 @@ repositories {
 }
 
 dependencies {
-    deobfCompile ("com.mcmoddev:ExtraGolems:1.12-7.1.1+") {
-        exclude group: 'deobf.mezz.jei'
+    deobfCompile ("com.mcmoddev:ExtraGolems:1.12-7.1.5+") {
+        exclude group: 'mezz.jei'
     }
-    deobfCompile ("slimeknights:TConstruct:1.12.2-2.12.0.+") {
-        exclude group: 'deobf.mezz.jei'
+    deobfCompile ("slimeknights:TConstruct:1.12.2-2.12.0.135+") {
+		exclude group: 'mezz.jei'
     }
-	deobfCompile "slimeknights.mantle:Mantle:1.12-1.3.3.+"
+	deobfCompile ("slimeknights.mantle:Mantle:1.12-1.3.3.49+") {
+        exclude group: 'mezz.jei'
+    }
 
 
 }
