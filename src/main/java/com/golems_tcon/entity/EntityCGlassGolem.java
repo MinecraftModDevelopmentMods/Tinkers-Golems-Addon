@@ -20,7 +20,7 @@ public class EntityCGlassGolem extends GolemBase {
 
 	@Override
 	protected ResourceLocation applyTexture() {
-		return GolemBase.makeGolemTexture(TconGolems.MODID, "clear_glass");
+		return GolemBase.makeTexture(TconGolems.MODID, "golem_clear_glass");
 	}
 
 	@Override

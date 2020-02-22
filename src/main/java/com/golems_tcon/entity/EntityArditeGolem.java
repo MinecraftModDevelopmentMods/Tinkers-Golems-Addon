@@ -23,7 +23,7 @@ public class EntityArditeGolem extends GolemBase {
 
 	@Override
 	protected ResourceLocation applyTexture() {
-		return GolemBase.makeGolemTexture(TconGolems.MODID, "ardite");
+		return GolemBase.makeTexture(TconGolems.MODID, "golem_ardite");
 	}
 
 	@Override

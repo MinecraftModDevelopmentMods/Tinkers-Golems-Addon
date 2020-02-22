@@ -14,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import slimeknights.tconstruct.shared.TinkerCommons;
@@ -28,7 +29,6 @@ public class EntityPigironGolem extends GolemBase {
 		super(world);
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.32D);
 		this.setLootTableLoc(TconGolems.MODID, "golem_pigiron");
-		this.setCreativeReturn(TinkerCommons.blockPigIron);
 		this.CHANCE = getConfig(this).getInt(BACON_CHANCE);
 	}
 
@@ -51,10 +51,15 @@ public class EntityPigironGolem extends GolemBase {
 		}
 		return false;
 	}
+	
+	@Override
+	public ItemStack getPickedResult(final RayTraceResult target) {
+		return TinkerCommons.blockPigIron;
+	}
 
 	@Override
 	protected ResourceLocation applyTexture() {
-		return GolemBase.makeGolemTexture(TconGolems.MODID, "pigiron");
+		return GolemBase.makeTexture(TconGolems.MODID, "golem_pigiron");
 	}
 
 	@Override

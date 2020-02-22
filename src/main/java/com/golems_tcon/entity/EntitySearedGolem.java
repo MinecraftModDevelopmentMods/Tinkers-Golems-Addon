@@ -20,7 +20,7 @@ public class EntitySearedGolem extends GolemBase {
 
 	@Override
 	protected ResourceLocation applyTexture() {
-		return GolemBase.makeGolemTexture(TconGolems.MODID, "seared");
+		return GolemBase.makeTexture(TconGolems.MODID, "golem_seared");
 	}
 
 	@Override

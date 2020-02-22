@@ -6,8 +6,10 @@ import com.golems_tcon.init.TconGolems;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import slimeknights.tconstruct.shared.TinkerCommons;
 import slimeknights.tconstruct.shared.block.BlockMetal;
@@ -19,7 +21,6 @@ public class EntityCobaltGolem extends GolemBase {
 		this.isImmuneToFire = true;
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.238D);
 		this.setLootTableLoc(TconGolems.MODID, "golem_cobalt");
-		this.setCreativeReturn(TinkerCommons.blockCobalt);
 	}
 
 	/** 
@@ -63,10 +64,15 @@ public class EntityCobaltGolem extends GolemBase {
 		golem.setPlayerCreated(this.isPlayerCreated());
 		this.setDead();
 	}
+	
+	@Override
+	public ItemStack getPickedResult(final RayTraceResult target) {
+		return TinkerCommons.blockCobalt;
+	}
 
 	@Override
 	protected ResourceLocation applyTexture() {
-		return GolemBase.makeGolemTexture(TconGolems.MODID, "cobalt");
+		return GolemBase.makeTexture(TconGolems.MODID, "golem_cobalt");
 	}
 
 	@Override

@@ -9,8 +9,10 @@ import com.golems_tcon.init.TconGolems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -40,10 +42,15 @@ public class EntityFirewoodGolem extends GolemBase {
 		}
 		return false;
 	}
+	
+	@Override
+	public ItemStack getPickedResult(final RayTraceResult target) {
+		return TinkerCommons.firewood;
+	}
 
 	@Override
 	protected ResourceLocation applyTexture() {
-		return GolemBase.makeGolemTexture(TconGolems.MODID, "firewood");
+		return GolemBase.makeTexture(TconGolems.MODID, "golem_firewood");
 	}
 
 	@Override

@@ -19,7 +19,7 @@ public class EntitySilkyGolem extends GolemBase {
 
 	@Override
 	protected ResourceLocation applyTexture() {
-		return GolemBase.makeGolemTexture(TconGolems.MODID, "silky");
+		return GolemBase.makeTexture(TconGolems.MODID, "golem_silky");
 	}
 
 	@Override
